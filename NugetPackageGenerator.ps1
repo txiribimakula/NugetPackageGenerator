@@ -8,4 +8,4 @@ $files =
     "fileName1",
     "fileName2"
 
-CopyFiles $files $debug
+CopyFiles $files $path $debug

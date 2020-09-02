@@ -1,4 +1,4 @@
-function CopyFiles([string[]]$files, [bool]$isDebug) {
+function CopyFiles([string[]]$files, [string]$path, [bool]$isDebug) {
     foreach ($file in $files) {
         Write-Host "Copy" $file
     }
