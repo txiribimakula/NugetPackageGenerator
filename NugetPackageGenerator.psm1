@@ -26,9 +26,9 @@ function AskForVersion([string]$nuspecPath, [int]$newMajorV, [int]$newMinorV, [i
             $newMinorV = $currentMinorV
         }
     } else {
-        [int]$newMajorV = Read-Host "Major version ($currentMajorV)"
-        [int]$newMinorV = Read-Host "Minor version ($currentMinorV)"
-        [int]$newPatchV = Read-Host "Patch version ($currentPatchV)"
+        if(!([int]$newMajorV = Read-Host "Major version ($currentMajorV)")) { $newMajorV = $currentMajorV}
+        if(!([int]$newMinorV = Read-Host "Minor version ($currentMinorV)")) { $newMinorV = $currentMinorV}
+        if(!([int]$newPatchV = Read-Host "Patch version ($currentPatchV)")) { $newPatchV = $currentPatchV}
     }
     [string]$preReleaseInfo = Read-Host "Pre-release info"
     
