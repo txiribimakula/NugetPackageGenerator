@@ -48,5 +48,5 @@ function SetVersion([string]$nuspecPath, [string]$newVersion) {
 
     $nuspecXml.Save($nuspecPath);
 
-    Write-Host $oldVersion + " -> " $newVersion
+    Write-Host "$oldVersion -> $newVersion"
 }
