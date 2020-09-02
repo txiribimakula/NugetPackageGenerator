@@ -1,9 +1,9 @@
 param (
     [switch]$debug,
     [switch]$local,
-    [int]$majorV,
-    [int]$minorV,
-    [int]$patchV
+    [int]$majorV=-1,
+    [int]$minorV=-1,
+    [int]$patchV=-1
 )
 
 Import-Module -Name ".\NugetPackageGenerator.psm1"
