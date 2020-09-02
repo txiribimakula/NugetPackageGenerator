@@ -50,3 +50,16 @@ function SetVersion([string]$nuspecPath, [string]$newVersion) {
 
     Write-Host "$oldVersion -> $newVersion"
 }
+
+function SetReleaseNotes([string]$nuspecPath, [string]$releaseNotes) {
+    [xml]$nuspecXml = Get-Content $nuspecPath
+    
+    $ns = new-object Xml.XmlNamespaceManager $nuspecXml.NameTable
+    $ns.AddNamespace("msb", "http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd")
+    
+    $releaseNotesNode = $nuspecXml.SelectSingleNode('//msb:releaseNotes', $ns)
+
+    $releaseNotesNode.InnerText = $releaseNotes
+
+    $nuspecXml.Save($nuspecPath);
+}

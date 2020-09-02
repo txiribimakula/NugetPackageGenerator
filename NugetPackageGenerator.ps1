@@ -25,3 +25,6 @@ if($local) {
 
 $newVersion = AskForVersion $nuspecPath $majorV $minorV $patchV
 SetVersion $nuspecPath $newVersion
+
+$releaseNotes = Read-Host "Release notes"
+SetReleaseNotes $nuspecPath $releaseNotes
