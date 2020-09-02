@@ -1,9 +1,14 @@
 param (
     [switch]$debug,
-    [switch]$local
+    [switch]$local,
+    [int]$majorV,
+    [int]$minorV,
+    [int]$patchV
 )
 
 Import-Module -Name ".\NugetPackageGenerator.psm1"
+
+$nuspecPath = "./file.nuspec"
 
 $localPath = "C://localPath"
 $serverPath = "//serverPath"
