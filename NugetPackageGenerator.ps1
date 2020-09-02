@@ -24,3 +24,4 @@ if($local) {
 }
 
 $newVersion = AskForVersion $nuspecPath $majorV $minorV $patchV
+SetVersion $nuspecPath $newVersion
