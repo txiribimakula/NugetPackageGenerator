@@ -19,5 +19,5 @@ if($local) {
     $path = $serverPath
 }
 
-CopyFiles $files $path $debug
+CopyFiles $path $files $extension
 
