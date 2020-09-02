@@ -62,4 +62,6 @@ function SetReleaseNotes([string]$nuspecPath, [string]$releaseNotes) {
     $releaseNotesNode.InnerText = $releaseNotes
 
     $nuspecXml.Save($nuspecPath);
+
+    Write-Host $releaseNotes
 }
