@@ -12,5 +12,5 @@ function GetVersion([string]$nuspecPath) {
     
     $versionNode = $nuspecXml.SelectSingleNode('//msb:version', $ns)
     
-    return $versionNode.InnerText
+    return $versionNode.InnerText.split('.')
 }
