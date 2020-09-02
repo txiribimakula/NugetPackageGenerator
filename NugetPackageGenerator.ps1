@@ -3,7 +3,8 @@ param (
     [switch]$local,
     [int]$majorV,
     [int]$minorV,
-    [int]$patchV
+    [int]$patchV,
+    [string]$notes
 )
 
 Import-Module -Name ".\NugetPackageGenerator.psm1"
@@ -26,5 +27,5 @@ if($local) {
 $newVersion = AskForVersion $nuspecPath $majorV $minorV $patchV
 SetVersion $nuspecPath $newVersion
 
-$releaseNotes = Read-Host "Release notes"
-SetReleaseNotes $nuspecPath $releaseNotes
+if(!$notes) { $notes = Read-Host "Release notes" }
+SetReleaseNotes $nuspecPath $notes
