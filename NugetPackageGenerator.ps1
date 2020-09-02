@@ -17,12 +17,8 @@ $files =
     "fileName1",
     "fileName2"
 
-$path
 if($local) {
-    $path = $localPath
+    CopyFiles $localPath $files $extension
 } else {
-    $path = $serverPath
+    CopyFiles $serverPath $files $extension
 }
-
-CopyFiles $path $files $extension
-
