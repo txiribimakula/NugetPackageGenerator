@@ -23,15 +23,11 @@ $files =
     "fileName1",
     "fileName2"
  
-$path
-if($local) {$path = $pathOptions.Local} else {$path = $pathOptions.Server}
-$extension
-if($debug) {$extension = ".*"} else {$extension = ".dll"}
-$newVersion = AskForVersion $nuspec $majorV $minorV $patchV
-if(!$notes) { $notes = Read-Host "Release notes" }
 
-CopyFiles $path $files $extension
+$inputData = GetInputData $local $pathOptions $debug $nuspec $majorV $minorV $patchV
 
-SetVersion $nuspec $newVersion
+CopyFiles $inputData.Path $files $inputData.Extension
 
-SetReleaseNotes $nuspec $notes
+SetVersion $nuspec $inputData.Version
+
+SetReleaseNotes $nuspec $inputData.ReleaseNotes

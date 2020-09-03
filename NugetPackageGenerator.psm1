@@ -1,3 +1,38 @@
+function GetInputData($local, $pathOptions, $debug, $nuspec, $majorV, $minorV, $patchV, $notes) {
+    $path
+    if($local) {
+        $path = $pathOptions.Local
+    } else {
+        $path = $pathOptions.Server
+    }
+
+    $extension
+    if($debug) {
+        $extension = ".*"
+    } else
+    {
+        $extension = ".dll"
+    }
+    
+    $newVersion = AskForVersion $nuspec $majorV $minorV $patchV
+
+    $releaseNotes
+    if(!$notes) {
+        $releaseNotes = Read-Host "Release notes"
+    } else {
+        $releaseNotes = $notes
+    }
+
+    $inputData = @{
+        Path = $path;
+        Extension = $extension;
+        Version = $newVersion;
+        ReleaseNotes = $releaseNotes;
+    }
+
+    return $inputData
+}
+
 function CopyFiles([string]$path, [string[]]$files, [string]$extension) {
     foreach ($file in $files) {
         Write-Host "Copy" $path"/"$file$extension
