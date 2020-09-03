@@ -14,7 +14,7 @@ $nuspec = @{
     Ns = "http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd";
 }
 
-$path = @{
+$pathOptions = @{
     Local = "C://localPath";
     Server = "//serverPath";
 }
@@ -22,12 +22,13 @@ $path = @{
 $files = 
     "fileName1",
     "fileName2"
+ 
 
-if($local) {
-    CopyFiles $path.Local $files ".*"
-} else {
-    CopyFiles $path.Server $files ".*"
-}
+$path
+if($local) {$path = $pathOptions.Local} else {$path = $pathOptions.Server}
+$extension
+if($debug) {$extension = ".*"} else {$extension = ".dll"}
+CopyFiles $path $files $extension
 
 $newVersion = AskForVersion $nuspec $majorV $minorV $patchV
 SetVersion $nuspec $newVersion
