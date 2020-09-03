@@ -11,20 +11,22 @@ Import-Module -Name ".\NugetPackageGenerator.psm1"
 
 $nuspec = @{
     Path = ".\example.nuspec";
-    Ns = "http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd"
-} 
+    Ns = "http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd";
+}
 
-$localPath = "C://localPath"
-$serverPath = "//serverPath"
+$path = @{
+    Local = "C://localPath";
+    Server = "//serverPath";
+}
 
 $files = 
     "fileName1",
     "fileName2"
 
 if($local) {
-    CopyFiles $localPath $files ".*"
+    CopyFiles $path.Local $files ".*"
 } else {
-    CopyFiles $serverPath $files ".*"
+    CopyFiles $path.Server $files ".*"
 }
 
 $newVersion = AskForVersion $nuspec $majorV $minorV $patchV
