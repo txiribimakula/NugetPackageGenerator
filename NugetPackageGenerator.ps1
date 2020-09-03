@@ -9,7 +9,10 @@ param (
 
 Import-Module -Name ".\NugetPackageGenerator.psm1"
 
-$nuspecPath = ".\example.nuspec"
+$nuspec = @{
+    Path = ".\example.nuspec";
+    Ns = "http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd"
+} 
 
 $localPath = "C://localPath"
 $serverPath = "//serverPath"
@@ -24,8 +27,8 @@ if($local) {
     CopyFiles $serverPath $files ".*"
 }
 
-$newVersion = AskForVersion $nuspecPath $majorV $minorV $patchV
-SetVersion $nuspecPath $newVersion
+$newVersion = AskForVersion $nuspec $majorV $minorV $patchV
+SetVersion $nuspec $newVersion
 
 if(!$notes) { $notes = Read-Host "Release notes" }
-SetReleaseNotes $nuspecPath $notes
+SetReleaseNotes $nuspec $notes
