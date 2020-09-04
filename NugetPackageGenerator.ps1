@@ -8,10 +8,8 @@ param (
     [switch]$push
 )
 Import-Module -Name ".\NugetPackageGenerator.psm1"
-$nuspec = @{
-    Path = ".\example.nuspec";
-    Ns = "http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd";
-}
+
+$nuspec = @{Path = ".\example.nuspec"; Ns = "http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd"}
 $paths = @{
     Local = "C:\localPath";
     Server = "\\serverPath";
