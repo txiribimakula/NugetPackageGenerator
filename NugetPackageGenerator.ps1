@@ -25,3 +25,4 @@ $files =
 CopyFiles $files
 SetVersion $nuspec $inputData.Version
 SetReleaseNotes $nuspec $inputData.ReleaseNotes
+GeneratePackage
