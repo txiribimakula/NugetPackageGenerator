@@ -1,27 +1,14 @@
 function GetInputData($local, $paths, $debug, $nuspec, $majorV, $minorV, $patchV, $notes) {
     $path
-    if($local) {
-        $path = $paths.Local
-    } else {
-        $path = $paths.Server
-    }
+    if($local) { $path = $paths.Local } else { $path = $paths.Server }
 
     $extension
-    if($debug) {
-        $extension = ".*"
-    } else
-    {
-        $extension = ".dll"
-    }
+    if($debug) { $extension = ".*" } else { $extension = ".dll" }
     
     $newVersion = AskForVersion $nuspec $majorV $minorV $patchV
 
     $releaseNotes
-    if(!$notes) {
-        $releaseNotes = Read-Host "Release notes"
-    } else {
-        $releaseNotes = $notes
-    }
+    if(!$notes) { $releaseNotes = Read-Host "Release notes" } else { $releaseNotes = $notes }
 
     $inputData = @{
         Path = $path;
