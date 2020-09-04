@@ -104,3 +104,7 @@ function SetReleaseNotes($nuspec, [string]$releaseNotes) {
 function GeneratePackage() {
     Write-Host "Generated Package..."
 }
+
+function DeployPackage() {
+    Write-Host "Deployed Package..."
+}

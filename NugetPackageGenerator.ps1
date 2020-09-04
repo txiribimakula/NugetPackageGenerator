@@ -4,7 +4,8 @@ param (
     [int]$majorV,
     [int]$minorV,
     [int]$patchV,
-    [string]$notes
+    [string]$notes,
+    [switch]$push
 )
 Import-Module -Name ".\NugetPackageGenerator.psm1"
 $nuspec = @{
@@ -26,3 +27,4 @@ CopyFiles $files
 SetVersion $nuspec $inputData.Version
 SetReleaseNotes $nuspec $inputData.ReleaseNotes
 GeneratePackage
+if($push) {DeployPackage}
