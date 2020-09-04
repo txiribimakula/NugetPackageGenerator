@@ -1,9 +1,9 @@
-function GetInputData($local, $pathOptions, $debug, $nuspec, $majorV, $minorV, $patchV, $notes) {
+function GetInputData($local, $paths, $debug, $nuspec, $majorV, $minorV, $patchV, $notes) {
     $path
     if($local) {
-        $path = $pathOptions.Local
+        $path = $paths.Local
     } else {
-        $path = $pathOptions.Server
+        $path = $paths.Server
     }
 
     $extension

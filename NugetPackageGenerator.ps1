@@ -11,12 +11,12 @@ $nuspec = @{
     Path = ".\example.nuspec";
     Ns = "http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd";
 }
-$pathOptions = @{
+$paths = @{
     Local = "C:\localPath";
     Server = "\\serverPath";
 }
 
-$inputData = GetInputData $local $pathOptions $debug $nuspec $majorV $minorV $patchV
+$inputData = GetInputData $local $paths $debug $nuspec $majorV $minorV $patchV
 
 $files = 
     @{Destination = ".\other-path"; Origin = $inputData.Path + "\relative-path"; Name = "filename" + $inputData.Extension; Condition = $true},
