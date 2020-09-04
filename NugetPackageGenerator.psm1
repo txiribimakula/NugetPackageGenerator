@@ -71,7 +71,7 @@ function AskForVersion($nuspec, [int]$newMajorV, [int]$newMinorV, [int]$newPatch
 }
 
 function SetVersion($nuspec, [string]$newVersion) {
-    [xml]$nuspecXml = Get-Content $nuspec.Path
+    [xml]$nuspecXml = Get-Content (Resolve-Path $nuspec.Path)
     
     $ns = new-object Xml.XmlNamespaceManager $nuspecXml.NameTable
     $ns.AddNamespace("msb", $nuspec.Ns)
@@ -81,13 +81,13 @@ function SetVersion($nuspec, [string]$newVersion) {
     $oldVersion = $versionNode.InnerText
     $versionNode.InnerText = $newVersion
 
-    $nuspecXml.Save($nuspec.Path);
+    $nuspecXml.Save((Resolve-Path $nuspec.Path));
 
     Write-Host "$oldVersion -> $newVersion"
 }
 
 function SetReleaseNotes($nuspec, [string]$releaseNotes) {
-    [xml]$nuspecXml = Get-Content $nuspec.Path
+    [xml]$nuspecXml = Get-Content (Resolve-Path $nuspec.Path)
     
     $ns = new-object Xml.XmlNamespaceManager $nuspecXml.NameTable
     $ns.AddNamespace("msb", $nuspec.Ns)
@@ -96,7 +96,7 @@ function SetReleaseNotes($nuspec, [string]$releaseNotes) {
 
     $releaseNotesNode.InnerText = $releaseNotes
 
-    $nuspecXml.Save($nuspec.Path);
+    $nuspecXml.Save((Resolve-Path $nuspec.Path));
 
     Write-Host $releaseNotes
 }
