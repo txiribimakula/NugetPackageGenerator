@@ -12,16 +12,16 @@ $nuspec = @{
     Ns = "http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd";
 }
 $pathOptions = @{
-    Local = "C://localPath";
-    Server = "//serverPath";
+    Local = "C:\localPath";
+    Server = "\\serverPath";
 }
-$files = 
-    "fileName1",
-    "fileName2"
- 
+
 $inputData = GetInputData $local $pathOptions $debug $nuspec $majorV $minorV $patchV
 
-CopyFiles $inputData.Path $files $inputData.Extension
+$files = 
+    @{Destination = ".\other-path"; Origin = $inputData.Path + "\relative-path"; Name = "filename" + $inputData.Extension; Condition = $true},
+    @{Destination = ".\other-path"; Origin = $inputData.Path + "\relative-path"; Name = "filename" + $inputData.Extension; Condition = $true}
 
+CopyFiles $files
 SetVersion $nuspec $inputData.Version
 SetReleaseNotes $nuspec $inputData.ReleaseNotes

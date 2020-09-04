@@ -33,9 +33,9 @@ function GetInputData($local, $pathOptions, $debug, $nuspec, $majorV, $minorV, $
     return $inputData
 }
 
-function CopyFiles([string]$path, [string[]]$files, [string]$extension) {
+function CopyFiles($files) {
     foreach ($file in $files) {
-        Write-Host "Copy" $path"/"$file$extension
+        Write-Host "Copy" $file.Name "from" $file.Origin "to" $file.Destination
     }
 }
 
