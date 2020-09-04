@@ -106,5 +106,8 @@ function GeneratePackage() {
 }
 
 function DeployPackage() {
+    do {
+        $confirmation = Read-Host "Write down 'lantek360' to confirm deployment"
+    } while($confirmation -ne "lantek360")
     Write-Host "Deployed Package..."
 }
